@@ -1,7 +1,6 @@
 import propTypes from 'prop-types';
-
+import { StyledIconWrapper } from './styles';
 export function Icon({ name }) {
-  // const { isLoading, Svg: SvgIcon } = useDynamicSvgImport(name);
 
   return <StyledIconWrapper icon={name}></StyledIconWrapper>;
 }

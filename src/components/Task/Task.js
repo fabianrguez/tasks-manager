@@ -8,13 +8,18 @@ import {
   StlyedTaskHeader,
   StyledTaskContent,
   StyledTaskAvatar,
+  StyledTaskPriority,
+  StyledTaskFooter,
 } from './styles';
 
-export function Task({ title, id, creationDate, description, list }) {
+export function Task({ title, id, creationDate, description, priority, list }) {
   const { moveTask } = useTasks();
   const [{ isDragging }, drag] = useDrag(() => ({
-    item: { title, id, list, creationDate, description },
+    item: { title, id, list, creationDate, description, priority },
     type: 'task',
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
       if (dropResult) {
@@ -28,14 +33,17 @@ export function Task({ title, id, creationDate, description, list }) {
   return (
     <StyledTaskWrapper ref={drag} isDragging={isDragging}>
       <StlyedTaskHeader>
+        <StyledTaskPriority priority={priority}>{priority}</StyledTaskPriority>
+      </StlyedTaskHeader>
+      <StyledTaskTitle>{title}</StyledTaskTitle>
+      <StyledTaskContent>{description}</StyledTaskContent>
+      <StyledTaskFooter>
         <StyledTaskCreationDate>
           <Icon name="date" />
           {parseDate(creationDate)}
         </StyledTaskCreationDate>
         <StyledTaskAvatar>FR</StyledTaskAvatar>
-      </StlyedTaskHeader>
-      <StyledTaskTitle>{title}</StyledTaskTitle>
-      <StyledTaskContent>{description}</StyledTaskContent>
+      </StyledTaskFooter>
     </StyledTaskWrapper>
   );
 }

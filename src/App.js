@@ -12,7 +12,7 @@ export function App() {
   return (
     <>
       <h1>Task Manager</h1>
-      <div style={{ display: 'flex', gap: '1rem' }}>
+      <div style={{ display: 'flex', gap: '1rem', height: '100%' }}>
         <DndProvider backend={HTML5Backend}>
           {Object.entries(tasks)?.map(([list, items]) => (
             <TaskList key={list} title={list}>
