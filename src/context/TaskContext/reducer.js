@@ -3,15 +3,19 @@ const initialState = {
     backlog: [
       {
         id: 1,
-        name: 'Task 1',
+        title: 'Task 1',
+        creationDate: 1643891544760,
+        description: 'Lorem ipsum dolor act it',
       },
       {
         id: 2,
-        name: 'Task 2',
+        title: 'Task 2',
+        creationDate: 1643891544760,
+        description: 'Lorem ipsum dolor act it',
       },
     ],
     doing: [],
-    done: []
+    done: [],
   },
 };
 

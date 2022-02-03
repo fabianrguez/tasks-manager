@@ -1,11 +1,19 @@
+import { Icon } from 'components/Icon';
 import { useTasks } from 'hooks';
 import { useDrag } from 'react-dnd';
-import { StyledTaskWrapper } from './styles';
+import {
+  StyledTaskCreationDate,
+  StyledTaskTitle,
+  StyledTaskWrapper,
+  StlyedTaskHeader,
+  StyledTaskContent,
+  StyledTaskAvatar,
+} from './styles';
 
-export function Task({ label, id, list }) {
+export function Task({ title, id, creationDate, description, list }) {
   const { moveTask } = useTasks();
   const [{ isDragging }, drag] = useDrag(() => ({
-    item: { name: label, id, list },
+    item: { title, id, list, creationDate, description },
     type: 'task',
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
@@ -15,11 +23,19 @@ export function Task({ label, id, list }) {
     },
   }));
 
-  const opacity = isDragging ? 0.8 : 1;
+  const parseDate = (timestamp) => new Intl.DateTimeFormat().format(new Date(timestamp));
 
   return (
-    <StyledTaskWrapper ref={drag} style={{ opacity }}>
-      {label}
+    <StyledTaskWrapper ref={drag} isDragging={isDragging}>
+      <StlyedTaskHeader>
+        <StyledTaskCreationDate>
+          <Icon name="date" />
+          {parseDate(creationDate)}
+        </StyledTaskCreationDate>
+        <StyledTaskAvatar>FR</StyledTaskAvatar>
+      </StlyedTaskHeader>
+      <StyledTaskTitle>{title}</StyledTaskTitle>
+      <StyledTaskContent>{description}</StyledTaskContent>
     </StyledTaskWrapper>
   );
 }

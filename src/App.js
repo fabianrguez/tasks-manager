@@ -17,7 +17,7 @@ export function App() {
           {Object.entries(tasks)?.map(([list, items]) => (
             <TaskList key={list} title={list}>
               {items.map((task) => (
-                <Task key={task.id} label={task.name} id={task.id} list={list} />
+                <Task key={task.id} {...task} list={list} />
               ))}
             </TaskList>
           ))}

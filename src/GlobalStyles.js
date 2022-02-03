@@ -14,7 +14,7 @@ export const GlobalStyles = createGlobalStyle`
 
   html, body, #app {
     height: 100vh;
-    width: 100vh;
+    width: 100%;
     padding: 1rem 4rem;
   }
 `;
