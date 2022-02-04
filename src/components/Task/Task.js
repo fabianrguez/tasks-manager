@@ -52,8 +52,8 @@ export function Task({ title, id, creationDate, description, priority, list }) {
           </StyledTaskFooter>
         </StyledTaskWrapper>
       ) : (
-        <StyledTaskWrapper ref={previewRef} isDragging={true} style={{}}>
-          <StyledTaskDraggingContent />
+        <StyledTaskWrapper ref={previewRef} isDragging={true}>
+          <StyledTaskDraggingContent priority={priority} />
         </StyledTaskWrapper>
       )}
     </>

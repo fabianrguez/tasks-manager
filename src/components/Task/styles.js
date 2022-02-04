@@ -84,5 +84,11 @@ export const StyledTaskPriority = styled.span`
 export const StyledTaskDraggingContent = styled.div`
   height: 100%;
   width: 100%;
-  background: repeating-linear-gradient(45deg, #77d3cf, #77d3cf 5px, #ffffff 5px, #ffffff 10px);
+  background: repeating-linear-gradient(
+    45deg,
+    ${({ theme, priority }) => theme.priorityBadge.color[priority]},
+    ${({ theme, priority }) => theme.priorityBadge.color[priority]} 5px,
+    #ffffff 5px,
+    #ffffff 10px
+  );
 `;

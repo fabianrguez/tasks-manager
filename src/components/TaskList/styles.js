@@ -6,6 +6,7 @@ export const StyledTaskListWrapper = styled.div`
   background: #efefef;
   height: 100%;
   width: 100%;
+  max-width: 19rem;
   border-radius: 2px;
   flex: 1;
   overflow-y: auto;
