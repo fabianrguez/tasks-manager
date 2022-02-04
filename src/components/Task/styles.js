@@ -6,12 +6,13 @@ export const StyledTaskWrapper = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   background: ${({ theme }) => theme.taskColor};
-  padding: 0.5rem 1rem;
-  min-height: 4rem;
+  padding: ${({ isDragging }) => (!isDragging ? '0.5rem 1rem' : 0)};
+  height: 9rem;
   width: 100%;
   border-radius: 3px;
   color: ${({ theme }) => theme.black};
   opacity: ${({ isDragging }) => (isDragging ? 0.4 : 1)};
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
   cursor: pointer;
 `;
 
@@ -73,12 +74,15 @@ export const StyledTaskPriority = styled.span`
   justify-content: center;
   height: 1.5rem;
   width: 4rem;
-  background: transparent;
-  color: ${({ theme, priority }) => theme.priorityBadge.color[priority]};
-  border-color: ${({ theme, priority }) => theme.priorityBadge.color[priority]};
-  border-style: solid;
-  border-width: 2px;
+  background: ${({ theme, priority }) => theme.priorityBadge.color[priority]};
+  color: ${({ theme }) => theme.white};
   border-radius: 10px;
   font-weight: 600;
   text-transform: uppercase;
+`;
+
+export const StyledTaskDraggingContent = styled.div`
+  height: 100%;
+  width: 100%;
+  background: repeating-linear-gradient(45deg, #77d3cf, #77d3cf 5px, #ffffff 5px, #ffffff 10px);
 `;

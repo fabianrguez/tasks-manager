@@ -10,13 +10,17 @@ import {
   StyledTaskAvatar,
   StyledTaskPriority,
   StyledTaskFooter,
+  StyledTaskDraggingContent,
 } from './styles';
 
 export function Task({ title, id, creationDate, description, priority, list }) {
   const { moveTask } = useTasks();
-  const [{ isDragging }, drag] = useDrag(() => ({
+  const [{ isDragging }, drag, previewRef] = useDrag(() => ({
     item: { title, id, list, creationDate, description, priority },
     type: 'task',
+    options: {
+      dropEffect: 'copy',
+    },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -31,19 +35,27 @@ export function Task({ title, id, creationDate, description, priority, list }) {
   const parseDate = (timestamp) => new Intl.DateTimeFormat().format(new Date(timestamp));
 
   return (
-    <StyledTaskWrapper ref={drag} isDragging={isDragging}>
-      <StlyedTaskHeader>
-        <StyledTaskPriority priority={priority}>{priority}</StyledTaskPriority>
-      </StlyedTaskHeader>
-      <StyledTaskTitle>{title}</StyledTaskTitle>
-      <StyledTaskContent>{description}</StyledTaskContent>
-      <StyledTaskFooter>
-        <StyledTaskCreationDate>
-          <Icon name="date" />
-          {parseDate(creationDate)}
-        </StyledTaskCreationDate>
-        <StyledTaskAvatar>FR</StyledTaskAvatar>
-      </StyledTaskFooter>
-    </StyledTaskWrapper>
+    <>
+      {!isDragging ? (
+        <StyledTaskWrapper ref={drag}>
+          <StlyedTaskHeader>
+            <StyledTaskPriority priority={priority}>{priority}</StyledTaskPriority>
+          </StlyedTaskHeader>
+          <StyledTaskTitle>{title}</StyledTaskTitle>
+          <StyledTaskContent>{description}</StyledTaskContent>
+          <StyledTaskFooter>
+            <StyledTaskCreationDate>
+              <Icon name="date" />
+              {parseDate(creationDate)}
+            </StyledTaskCreationDate>
+            <StyledTaskAvatar>FR</StyledTaskAvatar>
+          </StyledTaskFooter>
+        </StyledTaskWrapper>
+      ) : (
+        <StyledTaskWrapper ref={previewRef} isDragging={true} style={{}}>
+          <StyledTaskDraggingContent />
+        </StyledTaskWrapper>
+      )}
+    </>
   );
 }

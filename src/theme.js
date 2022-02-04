@@ -1,15 +1,15 @@
 export const appTheme = {
   fontFamily: "'Montserrat', sans-serif;",
-  taskColor: '#ffffff',
+  taskColor: '#fefefe',
   white: '#ffffff',
   black: '#111111',
   lightGrey: '#a8a8a8',
   avatarBackground: '#e8e8e8',
   priorityBadge: {
     color: {
-      high: '#ff0000',
-      low: '#00ff00',
-      normal: '#ff00ff',
+      high: '#d976a6',
+      low: '#82aafa',
+      normal: '#77d3cf',
     },
   },
 };

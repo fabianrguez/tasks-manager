@@ -1,5 +1,5 @@
 import { useDrop } from 'react-dnd';
-import { StyledTaskListWrapper, StyledTaskListTitle } from './styles';
+import { StyledTaskListContent, StyledTaskListTitle, StyledTaskListWrapper } from './styles';
 
 export function TaskList({ title, children }) {
   const [, drop] = useDrop(() => ({
@@ -13,8 +13,10 @@ export function TaskList({ title, children }) {
 
   return (
     <StyledTaskListWrapper ref={drop}>
-      <StyledTaskListTitle>{title}</StyledTaskListTitle>
-      {children}
+      <StyledTaskListContent>
+        <StyledTaskListTitle>{title}</StyledTaskListTitle>
+        {children}
+      </StyledTaskListContent>
     </StyledTaskListWrapper>
   );
 }

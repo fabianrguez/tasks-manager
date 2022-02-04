@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   html, body, #app {
-    height: 100vh;
+    height: 100%;
     width: 100%;
   }
 
