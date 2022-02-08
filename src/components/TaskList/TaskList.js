@@ -1,7 +1,14 @@
 import { useDrop } from 'react-dnd';
-import { StyledTaskListContent, StyledTaskListTitle, StyledTaskListWrapper } from './styles';
+import { PlusCircle } from 'react-feather';
+import {
+  StyledTaskListAddTaskButton,
+  StyledTaskListAddTaskWrapper,
+  StyledTaskListContent,
+  StyledTaskListTitle,
+  StyledTaskListWrapper,
+} from './styles';
 
-export function TaskList({ title, children }) {
+export function TaskList({ title, onAddTask, children }) {
   const [, drop] = useDrop(() => ({
     accept: 'task',
     drop: () => ({ name: title }),
@@ -11,12 +18,21 @@ export function TaskList({ title, children }) {
     }),
   }));
 
+  const handleAddClicked = (e) => {
+    e.preventDefault();
+    onAddTask();
+  };
+
   return (
     <StyledTaskListWrapper ref={drop}>
-      <StyledTaskListContent>
-        <StyledTaskListTitle>{title}</StyledTaskListTitle>
-        {children}
-      </StyledTaskListContent>
+      <StyledTaskListTitle>{title}</StyledTaskListTitle>
+      <StyledTaskListContent>{children}</StyledTaskListContent>
+      <StyledTaskListAddTaskWrapper>
+        <StyledTaskListAddTaskButton onClick={handleAddClicked}>
+          Add Task
+          <PlusCircle size={18} />
+        </StyledTaskListAddTaskButton>
+      </StyledTaskListAddTaskWrapper>
     </StyledTaskListWrapper>
   );
 }

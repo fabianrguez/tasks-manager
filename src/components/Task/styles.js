@@ -91,4 +91,5 @@ export const StyledTaskDraggingContent = styled.div`
     #ffffff 5px,
     #ffffff 10px
   );
+  border: 3px solid ${({ theme, priority }) => theme.priorityBadge.color[priority]};
 `;

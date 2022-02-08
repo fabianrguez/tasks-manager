@@ -1,9 +1,9 @@
-import { Board } from 'components/Board';
+import { Boards } from 'pages';
 
 export function App() {
   return (
     <>
-      <Board />
+      <Boards />
     </>
   );
 }

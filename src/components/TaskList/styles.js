@@ -6,10 +6,10 @@ export const StyledTaskListWrapper = styled.div`
   background: #efefef;
   height: 100%;
   width: 100%;
-  max-width: 19rem;
+  max-width: 18rem;
   border-radius: 2px;
   flex: 1;
-  overflow-y: auto;
+  box-shadow: 0 0 7px 1px rgba(0, 0, 0, 0.3);
 
   &::before {
     content: '';
@@ -21,12 +21,59 @@ export const StyledTaskListWrapper = styled.div`
 export const StyledTaskListTitle = styled.h2`
   font-weight: 600;
   font-size: 18px;
-  text-transform: uppercase;
+  text-transform: capitalize;
+  padding: 1rem 1rem 0;
 `;
 
 export const StyledTaskListContent = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 1rem 0.75rem;
   gap: 1rem;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+  }
+`;
+
+export const StyledTaskListAddTaskWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  height: 4rem;
+`;
+
+export const StyledTaskListAddTaskButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.lightGrey};
+  transition: all 0.3s;
+
+  &:hover {
+    opacity: 0.6;
+  }
 `;

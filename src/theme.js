@@ -1,5 +1,6 @@
 export const appTheme = {
   fontFamily: "'Montserrat', sans-serif;",
+  bodyBackground: '#f3f3f3',
   taskColor: '#fefefe',
   white: '#ffffff',
   black: '#111111',

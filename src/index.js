@@ -1,11 +1,11 @@
-import { render } from 'react-dom';
-import React from 'react';
-import { App } from './App';
-import { GlobalStyles } from 'GlobalStyles';
-import { ThemeProvider } from 'styled-components';
-import { appTheme } from 'theme';
 import { TasksContextProvider } from 'context/TaskContext';
 import { taskReducer, tasksInitialState } from 'context/TaskContext/reducer';
+import { GlobalStyles } from 'GlobalStyles';
+import React from 'react';
+import { render } from 'react-dom';
+import { ThemeProvider } from 'styled-components';
+import { appTheme } from 'theme';
+import { App } from './App';
 
 render(
   <React.StrictMode>

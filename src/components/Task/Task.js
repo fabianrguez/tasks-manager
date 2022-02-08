@@ -1,16 +1,9 @@
-import { Icon } from 'components/Icon';
 import { useTasks } from 'hooks';
 import { useDrag } from 'react-dnd';
+import { Calendar } from 'react-feather';
 import {
-  StyledTaskCreationDate,
-  StyledTaskTitle,
-  StyledTaskWrapper,
-  StlyedTaskHeader,
-  StyledTaskContent,
-  StyledTaskAvatar,
-  StyledTaskPriority,
-  StyledTaskFooter,
-  StyledTaskDraggingContent,
+  StlyedTaskHeader, StyledTaskAvatar, StyledTaskContent, StyledTaskCreationDate, StyledTaskDraggingContent, StyledTaskFooter, StyledTaskPriority, StyledTaskTitle,
+  StyledTaskWrapper
 } from './styles';
 
 export function Task({ title, id, creationDate, description, priority, list }) {
@@ -45,7 +38,7 @@ export function Task({ title, id, creationDate, description, priority, list }) {
           <StyledTaskContent>{description}</StyledTaskContent>
           <StyledTaskFooter>
             <StyledTaskCreationDate>
-              <Icon name="date" />
+              <Calendar size={14}/>
               {parseDate(creationDate)}
             </StyledTaskCreationDate>
             <StyledTaskAvatar>FR</StyledTaskAvatar>
