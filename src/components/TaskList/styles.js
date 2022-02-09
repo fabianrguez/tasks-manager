@@ -3,13 +3,14 @@ import styled from 'styled-components';
 export const StyledTaskListWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background: #efefef;
+  background: ${({ isOver, theme }) => (isOver ? theme.listBackgroundHover : theme.listBackground)};
   height: 100%;
   width: 100%;
   max-width: 18rem;
   border-radius: 2px;
   flex: 1;
   box-shadow: 0 0 7px 1px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s;
 
   &::before {
     content: '';
@@ -57,6 +58,7 @@ export const StyledTaskListAddTaskWrapper = styled.div`
   justify-content: center;
   margin-top: auto;
   height: 4rem;
+  background: transparent;
 `;
 
 export const StyledTaskListAddTaskButton = styled.button`
@@ -71,6 +73,7 @@ export const StyledTaskListAddTaskButton = styled.button`
   font-size: 12px;
   font-weight: 600;
   color: ${({ theme }) => theme.lightGrey};
+  background: transparent;
   transition: all 0.3s;
 
   &:hover {

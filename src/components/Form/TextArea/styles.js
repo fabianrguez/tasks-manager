@@ -1,18 +1,21 @@
 import styled from 'styled-components';
 
-export const StyledInputWrapper = styled.div`
+export const StyledTextAreaWrapper = styled.div`
   display: flex;
-  background: ${({ theme }) => theme.white};
   border: 1px solid ${({ theme }) => theme.inputBorder};
+  border-radius: 4px;
   padding: 0.35rem 0.5rem;
   margin: 0.5rem 0;
-  border-radius: 4px;
+  background: ${({ theme }) => theme.white};
   position: relative;
 
-  & input {
+  & textarea {
+    display: flex;
     flex: 1;
     border: none;
-    outline: 0;
+    outline: none;
+    background: transparent;
+    resize: none;
     font-size: 14px;
 
     &::placeholder {

@@ -9,22 +9,21 @@ import {
 } from './styles';
 
 export function TaskList({ title, onAddTask, children }) {
-  const [, drop] = useDrop(() => ({
+  const [{ isOver }, drop] = useDrop(() => ({
     accept: 'task',
     drop: () => ({ name: title }),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
-      canDrop: monitor.canDrop(),
     }),
   }));
 
   const handleAddClicked = (e) => {
     e.preventDefault();
-    onAddTask();
+    onAddTask(title);
   };
 
   return (
-    <StyledTaskListWrapper ref={drop}>
+    <StyledTaskListWrapper ref={drop} isOver={isOver}>
       <StyledTaskListTitle>{title}</StyledTaskListTitle>
       <StyledTaskListContent>{children}</StyledTaskListContent>
       <StyledTaskListAddTaskWrapper>

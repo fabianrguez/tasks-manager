@@ -50,3 +50,9 @@ export const StyledModalContent = styled.div`
   flex-direction: column;
   margin-top: 0.75rem;
 `;
+
+export const StyledModalFooter = styled.footer`
+  display: flex;
+  align-items: center;
+  justify-content: ${({ justify }) => justify};
+`;
