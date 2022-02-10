@@ -1,30 +1,21 @@
-import { useEffect } from 'react';
-import { useFirebase } from 'hooks';
 import { useTaskContext } from 'context/TaskContext';
 import { INIT_BOARD } from 'context/TaskContext/actionType';
+import { useFirebaseBoards } from 'hooks';
+import { useEffect } from 'react';
+import { isObjectEmpty } from 'utils';
 
 export function useActiveBoard(activeBoard) {
-  const { boards } = useFirebase();
+  const { boards, save, deleteColumnItem } = useFirebaseBoards();
   const [{ board }, dispatch] = useTaskContext();
 
-  const moveTask = (item, from, target) =>
-    dispatch({
-      type: MOVE_TASK_COLUMN,
-      payload: {
-        item,
-        columnOrigin: from,
-        columnTarget: target,
-      },
-    });
+  const moveTask = async (item, from, target) => {
+    deleteColumnItem({ document: item, column: from, collectionId: board.id });
+    save({ document: item, column: target, collectionId: board.id });
+  };
 
-  const createTask = (item, column) =>
-    dispatch({
-      type: CREATE_NEW_TASK,
-      payload: {
-        item,
-        column,
-      },
-    });
+  const createTask = async (item, column) => {
+    save({ document: item, column, collectionId: board.id });
+  };
 
   const changeActiveBoard = (board) =>
     dispatch({
@@ -35,11 +26,11 @@ export function useActiveBoard(activeBoard) {
     });
 
   useEffect(() => {
-    console.log(boards);
-    // const _board = Object.values(boards)?.filter((values) => console.log({ values, activeBoard }));
-    // console.log(_board);
-    // changeActiveBoard(_board);
-  }, [boards, activeBoard]);
+    if (!isObjectEmpty(boards)) {
+      const _activeBoard = Object.values(boards).find(({ name }) => name === activeBoard);
+      changeActiveBoard(_activeBoard);
+    }
+  }, [boards]);
 
   return { board, moveTask, createTask };
 }

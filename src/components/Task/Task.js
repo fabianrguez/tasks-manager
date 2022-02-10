@@ -1,15 +1,22 @@
-import { useTasks } from 'hooks';
+import { useActiveBoard, useTasks } from 'hooks';
 import { useDrag } from 'react-dnd';
 import { Calendar } from 'react-feather';
 import {
-  StlyedTaskHeader, StyledTaskAvatar, StyledTaskContent, StyledTaskCreationDate, StyledTaskDraggingContent, StyledTaskFooter, StyledTaskPriority, StyledTaskTitle,
-  StyledTaskWrapper
+  StlyedTaskHeader,
+  StyledTaskAvatar,
+  StyledTaskContent,
+  StyledTaskCreationDate,
+  StyledTaskDraggingContent,
+  StyledTaskFooter,
+  StyledTaskPriority,
+  StyledTaskTitle,
+  StyledTaskWrapper,
 } from './styles';
 
-export function Task({ title, id, creationDate, description, priority, list }) {
-  const { moveTask } = useTasks();
+export function Task({ title, id, creationDate, description, priority, assignedTo, list }) {
+  const { moveTask } = useActiveBoard('board2');
   const [{ isDragging }, drag, previewRef] = useDrag(() => ({
-    item: { title, id, list, creationDate, description, priority },
+    item: { title, id, creationDate, description, priority, assignedTo },
     type: 'task',
     options: {
       dropEffect: 'copy',
@@ -25,7 +32,7 @@ export function Task({ title, id, creationDate, description, priority, list }) {
     },
   }));
 
-  const parseDate = (timestamp) => new Intl.DateTimeFormat().format(new Date(timestamp));
+  const parseDate = (timestamp) => new Intl.DateTimeFormat().format(new Date(timestamp.seconds * 1000));
 
   return (
     <>
@@ -38,7 +45,7 @@ export function Task({ title, id, creationDate, description, priority, list }) {
           <StyledTaskContent>{description}</StyledTaskContent>
           <StyledTaskFooter>
             <StyledTaskCreationDate>
-              <Calendar size={14}/>
+              <Calendar size={14} />
               {parseDate(creationDate)}
             </StyledTaskCreationDate>
             <StyledTaskAvatar>FR</StyledTaskAvatar>

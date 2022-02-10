@@ -1,8 +1,10 @@
 import { Board } from 'components/Board';
 import { Button, Input, TextArea } from 'components/Form';
 import { Modal } from 'components/Modal';
+import { Timestamp } from 'firebase/firestore';
 import { useActiveBoard } from 'hooks';
 import { useRef, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 export function Boards() {
   const { board, createTask } = useActiveBoard('board2');
@@ -30,8 +32,10 @@ export function Boards() {
         {
           title: inputValues.taskName,
           description: inputValues.taskDescription,
-          creationDate: Date.now(),
+          creationDate: Timestamp.now(),
           priority: 'normal',
+          id: uuidv4(),
+          assignedTo: ['Fabian'],
         },
         addTaskColumn
       );
