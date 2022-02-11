@@ -74,6 +74,7 @@ export function Boards() {
           <Select.Option value="low">Low</Select.Option>
           <Select.Option value="normal">Normal</Select.Option>
           <Select.Option value="high">High</Select.Option>
+          <Select.Option value="veryHigh">Very High</Select.Option>
         </Select>
         <Modal.Footer justify="flex-end">
           <Button onClick={handleCreateTask}>Add</Button>
