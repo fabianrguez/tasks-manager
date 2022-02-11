@@ -1,10 +1,14 @@
 import { StyledButton } from './styles';
 
-export function Button({ onClick = () => {}, children }) {
+export function Button({ onClick = () => {}, children, ...rest }) {
   const handleOnClick = (e) => {
     e.preventDefault();
     onClick(e);
   };
 
-  return <StyledButton onClick={handleOnClick}>{children}</StyledButton>;
+  return (
+    <StyledButton {...rest} onClick={handleOnClick}>
+      {children}
+    </StyledButton>
+  );
 }

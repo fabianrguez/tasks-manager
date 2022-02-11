@@ -10,6 +10,7 @@ export const StyledModalWrapper = styled.div`
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.4);
+  perspective: 1000px;
   z-index: ${({ isOpen }) => (isOpen ? 2 : -1)};
 `;
 
@@ -22,6 +23,11 @@ export const StyledModalDialog = styled.div`
   padding: 1rem;
   border-radius: 6px;
   position: relative;
+  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+  visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
+  transform: ${({ isVisible }) =>
+    isVisible ? 'rotateX(0) scale(1) translateY(0)' : 'rotateX(65deg) scale(0.75) translateY(30px)'};
+  transition: all 0.35s;
 `;
 
 export const StyledModalCloseButton = styled.button`

@@ -1,5 +1,5 @@
 import { useModal } from 'hooks';
-import { useImperativeHandle, forwardRef } from 'react';
+import { useImperativeHandle, forwardRef, useState } from 'react';
 import { X } from 'react-feather';
 import {
   StyledModalCloseButton,
@@ -11,21 +11,42 @@ import {
 } from './styles';
 
 export const Modal = forwardRef(({ initialIsOpen = false, title, children, onCloseModal = () => {} }, ref) => {
-  const { isOpen, toggle } = useModal({ initialIsOpen });
+  const { isOpen, close, open } = useModal({ initialIsOpen });
+  const [isDialogVisible, setIsDialogVisible] = useState(initialIsOpen);
 
   const handleCloseModal = (e) => {
     e.preventDefault();
-    toggle();
+    toggleModal();
     onCloseModal();
   };
 
+  const toggleModal = () => {
+    if (isOpen) {
+      setIsDialogVisible(false);
+    } else {
+      open();
+      setIsDialogVisible(true);
+    }
+  };
+
+  const handleDialogTransitionEnd = () => {
+    if (!isDialogVisible) {
+      close();
+    }
+  };
+
   useImperativeHandle(ref, () => ({
-    toggleModal: () => toggle(),
+    toggleModal,
   }));
 
   return (
     <StyledModalWrapper isOpen={isOpen}>
-      <StyledModalDialog role="dialog" aria-modal="true">
+      <StyledModalDialog
+        role="dialog"
+        aria-modal="true"
+        isVisible={isDialogVisible}
+        onTransitionEnd={handleDialogTransitionEnd}
+      >
         <StyledModalTitle>{title}</StyledModalTitle>
         <StyledModalCloseButton onClick={handleCloseModal} aria-label="Close" title="Close">
           <X />

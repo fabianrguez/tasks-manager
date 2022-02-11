@@ -1,5 +1,5 @@
 import { Board } from 'components/Board';
-import { Button, Input, TextArea } from 'components/Form';
+import { Button, Input, Select, TextArea } from 'components/Form';
 import { Modal } from 'components/Modal';
 import { Timestamp } from 'firebase/firestore';
 import { useActiveBoard } from 'hooks';
@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 export function Boards() {
   const { board, createTask } = useActiveBoard('board2');
   const [addTaskColumn, setAddTaskColumn] = useState('');
-  const [inputValues, setInputValues] = useState({ taskName: '', taskDescription: '' });
+  const [inputValues, setInputValues] = useState({ taskName: '', taskDescription: '', taskPriority: '' });
   const modalRef = useRef();
 
   const handleAddTask = (column) => {
@@ -18,7 +18,7 @@ export function Boards() {
   };
 
   const handleInputChange = (e) => {
-    e.preventDefault();
+    e.preventDefault?.();
     setInputValues((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
@@ -33,14 +33,14 @@ export function Boards() {
           title: inputValues.taskName,
           description: inputValues.taskDescription,
           creationDate: Timestamp.now(),
-          priority: 'normal',
+          priority: inputValues.taskPriority,
           id: uuidv4(),
           assignedTo: ['Fabian'],
         },
         addTaskColumn
       );
       setAddTaskColumn('');
-      setInputValues({ taskName: '', taskDescription: '' });
+      setInputValues({ taskName: '', taskDescription: '', taskPriority: '' });
       modalRef.current?.toggleModal();
     }
   };
@@ -65,6 +65,16 @@ export function Boards() {
           value={inputValues.taskDescription}
           onInput={handleInputChange}
         />
+        <Select
+          placeholder="Select priority"
+          name="taskPriority"
+          value={inputValues.taskPriority}
+          onChange={handleInputChange}
+        >
+          <Select.Option value="low">Low</Select.Option>
+          <Select.Option value="normal">Normal</Select.Option>
+          <Select.Option value="high">High</Select.Option>
+        </Select>
         <Modal.Footer justify="flex-end">
           <Button onClick={handleCreateTask}>Add</Button>
         </Modal.Footer>
