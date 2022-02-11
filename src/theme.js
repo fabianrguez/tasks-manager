@@ -11,7 +11,7 @@ export const appTheme = {
   avatarBackground: '#e8e8e8',
   priorityBadge: {
     color: {
-      veryHigh: '#ff007c',
+      asap: '#ff007c',
       high: '#d976a6',
       low: '#82aafa',
       normal: '#77d3cf',
