@@ -32,7 +32,7 @@ export const StyledNavbarNavItem = styled(NavLink)`
   font-size: 14px;
   opacity: 0.2;
   transition: opacity 0.2s;
-  ${({ atBottom }) => atBottom && 'margin-top: auto;'}
+  ${({ placebottom }) => placebottom && 'margin-top: auto;'}
 
   &:hover {
     opacity: 0.6;

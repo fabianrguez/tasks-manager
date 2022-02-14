@@ -8,6 +8,7 @@ import {
   StyledModalTitle,
   StyledModalWrapper,
   StyledModalFooter,
+  StyledModalRow,
 } from './styles';
 
 export const Modal = forwardRef(({ initialIsOpen = false, title, children, onCloseModal = () => {} }, ref) => {
@@ -58,3 +59,4 @@ export const Modal = forwardRef(({ initialIsOpen = false, title, children, onClo
 });
 
 Modal.Footer = StyledModalFooter;
+Modal.Row = StyledModalRow;

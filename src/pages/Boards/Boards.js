@@ -68,25 +68,27 @@ export function Boards() {
           value={inputValues.taskDescription}
           onInput={handleInputChange}
         />
-        <Select placeholder="Column" name="taskColumn" value={inputValues.taskColumn} onChange={handleInputChange}>
-          {columns?.map((column, index) => (
-            <Select.Option key={`${column}-${index}`} value={column}>
-              {column}
-            </Select.Option>
-          ))}
-        </Select>
-        <Select
-          placeholder="Select priority"
-          name="taskPriority"
-          value={inputValues.taskPriority}
-          onChange={handleInputChange}
-        >
-          {PRIORITIES.map((priority) => (
-            <Select.Option key={priority} value={priority}>
-              {priority}
-            </Select.Option>
-          ))}
-        </Select>
+        <Modal.Row>
+          <Select placeholder="Column" name="taskColumn" value={inputValues.taskColumn} onChange={handleInputChange}>
+            {columns?.map((column, index) => (
+              <Select.Option key={`${column}-${index}`} value={column}>
+                {column}
+              </Select.Option>
+            ))}
+          </Select>
+          <Select
+            placeholder="Select priority"
+            name="taskPriority"
+            value={inputValues.taskPriority}
+            onChange={handleInputChange}
+          >
+            {PRIORITIES.map((priority) => (
+              <Select.Option key={priority} value={priority}>
+                {priority}
+              </Select.Option>
+            ))}
+          </Select>
+        </Modal.Row>
         <Modal.Footer justify="flex-end">
           <Button onClick={handleCreateTask}>Add</Button>
         </Modal.Footer>

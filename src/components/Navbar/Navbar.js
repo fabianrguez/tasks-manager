@@ -9,7 +9,7 @@ export function Navbar() {
           <Server />
           <span>Boards</span>
         </StyledNavbarNavItem>
-        <StyledNavbarNavItem to="/test" atBottom>
+        <StyledNavbarNavItem to="/test" placebottom="true">
           <Settings />
           <span>Settings</span>
         </StyledNavbarNavItem>

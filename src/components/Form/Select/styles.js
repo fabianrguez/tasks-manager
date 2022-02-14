@@ -11,6 +11,7 @@ export const StyledSelectWrapper = styled.div`
   border-radius: 4px;
   background: ${({ theme }) => theme.white};
   z-index: ${({ isMenuOpen }) => (isMenuOpen ? 1 : 0)};
+  flex: 1;
 
   & ${StyledButton} {
     display: flex;

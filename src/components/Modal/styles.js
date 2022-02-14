@@ -18,8 +18,8 @@ export const StyledModalDialog = styled.div`
   display: flex;
   flex-direction: column;
   background: white;
-  min-width: 20rem;
-  min-height: 12rem;
+  min-width: 40rem;
+  min-height: 24rem;
   padding: 1rem;
   border-radius: 6px;
   position: relative;
@@ -61,4 +61,9 @@ export const StyledModalFooter = styled.footer`
   display: flex;
   align-items: center;
   justify-content: ${({ justify }) => justify};
+`;
+
+export const StyledModalRow = styled.div`
+  display: flex;
+  gap: 2rem;
 `;
