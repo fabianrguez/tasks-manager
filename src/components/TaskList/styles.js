@@ -4,7 +4,7 @@ export const StyledTaskListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   background: ${({ isOver, theme }) => (isOver ? theme.listBackgroundHover : theme.listBackground)};
-  height: 100%;
+  max-height: 100%;
   width: 100%;
   max-width: 18rem;
   border-radius: 2px;
