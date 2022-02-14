@@ -9,6 +9,7 @@ export const appTheme = {
   listBackgroundHover: '#cecece',
   inputBorder: '#cecece',
   avatarBackground: '#e8e8e8',
+  activeLink: '#77d3cf',
   priorityBadge: {
     color: {
       asap: '#ff007c',

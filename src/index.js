@@ -7,6 +7,7 @@ import { render } from 'react-dom';
 import { ThemeProvider } from 'styled-components';
 import { appTheme } from 'theme';
 import { App } from './App';
+import { BrowserRouter } from 'react-router-dom';
 
 initializeFirebaseApp();
 
@@ -15,7 +16,9 @@ render(
     <TasksContextProvider reducer={taskReducer} initialState={tasksInitialState}>
       <ThemeProvider theme={appTheme}>
         <GlobalStyles />
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </ThemeProvider>
     </TasksContextProvider>
   </React.StrictMode>,

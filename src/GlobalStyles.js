@@ -13,12 +13,14 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   html, body, #app {
+    display: flex;
     height: 100%;
     width: 100%;
     background: ${({ theme }) => theme.bodyBackground};
   }
 
-  #app {
-    padding: 1rem 4rem;
+  main {
+    padding: 1rem;
+    width: 100%;
   }
 `;

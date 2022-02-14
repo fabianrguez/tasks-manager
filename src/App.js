@@ -1,9 +1,11 @@
-import { Boards } from 'pages';
+import { Navbar } from 'components/Navbar';
+import { AppRoutes } from 'pages';
 
 export function App() {
   return (
     <>
-      <Boards />
+      <Navbar />
+      <AppRoutes />
     </>
   );
 }

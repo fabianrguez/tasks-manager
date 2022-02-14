@@ -51,7 +51,7 @@ export function Boards() {
 
   return (
     <>
-      <Board columns={board?.columns} onAddTask={handleAddTask} />
+      <Board name={board?.name} columns={board?.columns} onAddTask={handleAddTask} />
       <Modal ref={modalRef} title="Add task..." initialIsOpen={false}>
         <Input
           type="text"
