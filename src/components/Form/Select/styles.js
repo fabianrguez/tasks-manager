@@ -10,6 +10,7 @@ export const StyledSelectWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.inputBorder};
   border-radius: 4px;
   background: ${({ theme }) => theme.white};
+  z-index: ${({ isMenuOpen }) => (isMenuOpen ? 1 : 0)};
 
   & ${StyledButton} {
     display: flex;
@@ -17,6 +18,8 @@ export const StyledSelectWrapper = styled.div`
     justify-content: space-between;
     background: inherit;
     text-transform: capitalize;
+    position: relative;
+    z-index: 0;
 
     & svg {
       transition: all 0.35s;
@@ -40,6 +43,7 @@ export const StyledSelectMenuList = styled.ul`
   backface-visibility: hidden;
   transform: ${({ isVisible }) => (isVisible ? 'rotate3d(0, 0, 0, 0)' : 'rotate3d(1, 0, 0, -90deg)')};
   transform-origin: 0% 0%;
+  z-index: 1;
   transition: all 0.35s;
 `;
 
@@ -48,6 +52,7 @@ export const StyledMenuItem = styled.li`
   cursor: pointer;
   padding: 0.25rem;
   font-size: 14px;
+  text-transform: capitalize;
   transition: all 0.2s;
 
   &:hover,

@@ -36,21 +36,27 @@ export function Select({ placeholder = 'Empty select text', name = '', value = '
     setIsMenuOpen(false);
   };
 
+  const setActiveOption = () => {
+    const options = menuRef.current.querySelectorAll('[role=option]');
+    options.forEach((option) => {
+      option.setAttribute('aria-selected', 'false');
+      if (value !== '' && option.getAttribute('data-value').toLowerCase() === value.toLowerCase()) {
+        option.setAttribute('aria-selected', 'true');
+      }
+    });
+    setSelectedValue(value);
+  };
+
   useEffect(() => {
     const options = menuRef.current.querySelectorAll('[role=option]');
     options.forEach((option) => {
-      if (value !== '' && option.getAttribute('data-value') === value) {
-        option.setAttribute('aria-selected', 'true');
-      }
       option.addEventListener('click', handleOptionClicked);
     });
 
     return () => options.forEach((option) => option.removeEventListener('click', handleOptionClicked));
   }, []);
 
-  useEffect(() => {
-    setSelectedValue(value);
-  }, [value]);
+  useEffect(setActiveOption, [value]);
 
   return (
     <StyledSelectWrapper isMenuOpen={isMenuOpen} onBlur={handleSelectBlur}>

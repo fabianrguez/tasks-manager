@@ -1,12 +1,13 @@
 import { useTaskContext } from 'context/TaskContext';
 import { INIT_BOARD } from 'context/TaskContext/actionType';
 import { useFirebaseBoards } from 'hooks';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { isObjectEmpty } from 'utils';
 
 export function useActiveBoard(activeBoard) {
   const { boards, save, deleteColumnItem } = useFirebaseBoards();
   const [{ board }, dispatch] = useTaskContext();
+  const [columns, setColumns] = useState([]);
 
   const moveTask = async (item, from, target) => {
     deleteColumnItem({ document: item, column: from, collectionId: board.id });
@@ -29,8 +30,9 @@ export function useActiveBoard(activeBoard) {
     if (!isObjectEmpty(boards)) {
       const _activeBoard = Object.values(boards).find(({ name }) => name === activeBoard);
       changeActiveBoard(_activeBoard);
+      setColumns(Object.keys(_activeBoard.columns));
     }
   }, [boards]);
 
-  return { board, moveTask, createTask };
+  return { board, columns, moveTask, createTask };
 }

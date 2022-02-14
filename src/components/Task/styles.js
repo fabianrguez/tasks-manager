@@ -39,9 +39,13 @@ export const StyledTaskCreationDate = styled.span`
 `;
 
 export const StyledTaskContent = styled.div`
-  display: flex;
+  display: inline-block;
   font-size: 10px;
   margin-top: 0.75rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 `;
 
 export const StyledTaskAvatar = styled.span`

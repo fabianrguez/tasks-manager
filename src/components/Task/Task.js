@@ -42,7 +42,7 @@ export function Task({ title, id, creationDate, description, priority, assignedT
             <StyledTaskPriority priority={priority}>{priority}</StyledTaskPriority>
           </StlyedTaskHeader>
           <StyledTaskTitle>{title}</StyledTaskTitle>
-          <StyledTaskContent>{description}</StyledTaskContent>
+          <StyledTaskContent title={description}>{description}</StyledTaskContent>
           <StyledTaskFooter>
             <StyledTaskCreationDate>
               <Calendar size={14} />
