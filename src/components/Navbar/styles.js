@@ -6,6 +6,7 @@ export const StyledNavbarAside = styled.aside`
   height: 100%;
   box-shadow: 0 -1px 7px 0 rgb(0 0 0 / 30%);
   width: 10%;
+  max-width: 7rem;
 `;
 
 export const StyledNavbarNav = styled.nav`

@@ -48,6 +48,7 @@ export function Select({ placeholder = 'Empty select text', name = '', value = '
   };
 
   useEffect(() => {
+    // console.log(`initializing select: ${placeholder}`);
     const options = menuRef.current.querySelectorAll('[role=option]');
     options.forEach((option) => {
       option.addEventListener('click', handleOptionClicked);

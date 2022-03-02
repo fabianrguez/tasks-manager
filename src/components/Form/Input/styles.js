@@ -21,9 +21,10 @@ export const StyledInputWrapper = styled.div`
 
     &:not(:placeholder-shown) {
       & + label {
-        transform: translateY(-14px);
+        transform: translateY(-12px);
         font-size: 10px;
         opacity: 1;
+        padding: 0 0.15rem;
       }
     }
   }
